@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nafiur Rahman | AI Automation Expert</title>
+<meta name="description" content="AI automation projects built with n8n, Make and Zapier.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #05050a;
+  --panel: rgba(15, 15, 25, 0.75);
+  --tx: #e6e6f0;
+  --mut: rgba(255, 255, 255, 0.65);
+  --line: rgba(255, 255, 255, 0.08);
+  --g: linear-gradient(90deg, #8b5cf6, #38bdf8, #10b981, #8b5cf6);
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+img, svg { max-width: 100%; }
+body { 
+  background: var(--bg); 
+  color: var(--tx); 
+  font: 16px/1.6 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; 
+  overflow-x: hidden; 
+}
+a { color: inherit; text-decoration: none; }
+.glass { 
+  background: rgba(255,255,255,.03); 
+  border: 1px solid var(--line); 
+  backdrop-filter: blur(20px); 
+  -webkit-backdrop-filter: blur(20px); 
+}
+.gt { 
+  background: var(--g); 
+  background-size: 300% auto;
+  -webkit-background-clip: text; 
+  background-clip: text; 
+  color: transparent; 
+  animation: shine 5s linear infinite;
+}
+@keyframes shine { to { background-position: 300% center; } }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 96px 24px; }
+h2 { font-size: clamp(32px, 5vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+.sub { color: var(--mut); margin-top: 12px; font-size: 18px; }
+
+nav {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 40;
+  display: flex; gap: 28px; align-items: center; justify-content: space-between;
+  width: min(960px, calc(100% - 32px)); padding: 14px 28px; border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+nav b { font-weight: 700; font-size: 18px; white-space: nowrap; }
+nav div { display: flex; gap: 28px; font-size: 15px; color: var(--mut); font-weight: 500; }
+nav div a { transition: color 0.2s; }
+nav div a:hover { color: #fff; }
+
+/* hero */
+#top { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 60px; overflow: hidden; }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%); }
+.blob { position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(140px); animation: fl 10s ease-in-out infinite alternate; opacity: 0.6; }
+@keyframes fl { 100% { transform: translate(30px, -40px) scale(1.1); } }
+.hero { position: relative; width: 100%; min-width: 0; max-width: 900px; z-index: 10; overflow-wrap: break-word; }
+.badge { display: inline-block; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #6ee7b7; border: 1px solid rgba(110, 231, 183, 0.3); box-shadow: 0 0 20px rgba(110, 231, 183, 0.1); }
+h1 { font-size: clamp(48px, 9vw, 84px); line-height: 1.05; margin-top: 28px; font-weight: 800; letter-spacing: -0.03em; }
+.role { font-size: clamp(20px, 3.5vw, 26px); color: #fff; margin-top: 18px; font-weight: 600; }
+.tag { max-width: 700px; margin: 20px auto 0; color: var(--mut); font-size: 18px; }
+.cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+.btn { padding: 14px 32px; border-radius: 999px; font-weight: 700; border: 0; cursor: pointer; font-size: 16px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 15px 25px -10px rgba(56, 189, 248, 0.5); }
+.pri { background: var(--g); background-size: 200% auto; color: #000; animation: shine 5s linear infinite; }
+.sec { color: #fff; border: 1px solid var(--line); }
+
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 64px; }
+.stats div { padding: 24px; border-radius: 24px; transition: transform 0.3s; }
+.stats div:hover { transform: translateY(-5px); background: rgba(255,255,255,0.06); }
+.stats b { display: block; font-size: clamp(28px, 5vw, 42px); font-weight: 800; line-height: 1; margin-bottom: 8px; }
+.stats span { font-size: 14px; font-weight: 500; color: var(--mut); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* skills */
+.sk { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px; margin-top: 48px; }
+.sk > div { padding: 32px; border-radius: 24px; transition: border-color 0.3s, transform 0.3s; }
+.sk > div:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+.sk h3 { font-size: 13px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.sk h3::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; display: inline-block; }
+.chip { display: inline-block; margin: 0 10px 10px 0; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.03); font-size: 14px; font-weight: 500; transition: all 0.3s; cursor: default; }
+.chip:hover { transform: translateY(-3px) scale(1.05); border-color: #38bdf8; color: #fff; background: rgba(56, 189, 248, 0.1); box-shadow: 0 10px 20px -10px rgba(56, 189, 248, 0.4); }
+
+/* projects */
+.filters { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 40px; }
+.f { padding: 8px 20px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: var(--mut); cursor: pointer; font-size: 15px; font-weight: 600; font-family: inherit; transition: all 0.2s; }
+.f:hover { background: rgba(255,255,255,.08); color: #fff; }
+.f.on { background: #fff; color: #000; border-color: #fff; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 32px; margin-top: 40px; }
+.card { display: flex; flex-direction: column; text-align: left; border-radius: 24px; overflow: hidden; cursor: pointer; color: inherit; font: inherit; padding: 0; border: 1px solid var(--line); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); animation: up .6s both; background: var(--panel); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5); }
+.card:hover { transform: translateY(-8px); border-color: var(--a); box-shadow: 0 20px 40px -15px var(--sh); }
+@keyframes up { from { opacity: 0; transform: translateY(30px); } }
+
+.th { position: relative; height: 200px; background: var(--ag); padding: 1px; }
+.th > div { height: 100%; background: #000; overflow: hidden; }
+.th img, .shot img { width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform 0.6s ease; }
+.card:hover .th img { transform: scale(1.05); }
+.ph { height: 100%; display: flex; align-items: center; justify-content: center; background: var(--ag); opacity: .3; font-size: 14px; }
+.pf { position: absolute; left: 16px; top: 16px; background: rgba(0,0,0,.75); backdrop-filter: blur(4px); padding: 4px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
+
+.cb { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.cat { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--a); }
+.cb h3 { font-size: 20px; font-weight: 700; margin-top: 8px; line-height: 1.3; }
+.cb p { font-size: 15px; color: var(--mut); margin-top: 10px; flex: 1; }
+.cf { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.cf span:first-child { color: #fff; background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 6px; }
+.cf span:last-child { color: var(--a); transition: transform 0.2s; }
+.card:hover .cf span:last-child { transform: translateX(4px); }
+
+.pu { --a: #c4b5fd; --ag: linear-gradient(135deg, #8b5cf6, #d946ef); --sh: rgba(139, 92, 246, 0.4); }
+.em { --a: #6ee7b7; --ag: linear-gradient(135deg, #34d399, #14b8a6); --sh: rgba(52, 211, 153, 0.4); }
+.bl { --a: #7dd3fc; --ag: linear-gradient(135deg, #38bdf8, #2563eb); --sh: rgba(56, 189, 248, 0.4); }
+
+/* modal */
+#md { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow-y: auto; padding: 40px 16px; display: none; }
+#md.open { display: block; animation: fi .3s; }
+@keyframes fi { from { opacity: 0; backdrop-filter: blur(0); } }
+.m { position: relative; max-width: 1000px; margin: 0 auto; background: #0c0c14; border: 1px solid var(--line); border-radius: 32px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); animation: pop .4s cubic-bezier(.2,.9,.3,1.1); }
+@keyframes pop { from { opacity: 0; transform: translateY(60px) scale(.95); } }
+.bar { height: 8px; background: var(--ag); }
+.x { position: absolute; right: 24px; top: 24px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,.05); color: #fff; cursor: pointer; font-size: 20px; transition: all 0.2s; z-index: 10; }
+.x:hover { background: rgba(255,255,255,.15); transform: rotate(90deg); }
+.mi { padding: clamp(24px, 5vw, 48px); }
+.mi h3 { font-size: clamp(30px, 4.5vw, 44px); font-weight: 800; line-height: 1.15; margin-top: 12px; letter-spacing: -0.02em; }
+.shot { height: clamp(240px, 45vw, 480px); margin-top: 32px; border: 1px solid var(--line); border-radius: 20px; background: #000; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.shot img { object-fit: contain; }
+.th2 { display: flex; gap: 12px; margin-top: 16px; overflow-x: auto; padding-bottom: 8px; }
+.th2 button { width: 120px; height: 72px; flex: none; border: 2px solid transparent; border-radius: 12px; overflow: hidden; background: #000; cursor: pointer; opacity: .5; padding: 0; transition: all 0.2s; }
+.th2 button:hover { opacity: .8; transform: translateY(-2px); }
+.th2 button.on { opacity: 1; border-color: var(--a); }
+.th2 img { width: 100%; height: 100%; object-fit: cover; }
+.roi { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px; margin-top: 32px; }
+.roi > div { background: var(--ag); padding: 1px; border-radius: 24px; }
+.roi > div > div { background: #0c0c14; padding: 24px; text-align: center; border-radius: 24px; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.roi b { display: block; font-size: 40px; font-weight: 800; color: var(--a); line-height: 1; margin-bottom: 8px; }
+.roi span { font-size: 14px; font-weight: 600; color: var(--mut); text-transform: uppercase; letter-spacing: 0.05em; }
+.note { font-size: 13px; color: rgba(255,255,255,.4); margin-top: 16px; text-align: center; }
+.ps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 32px; margin-top: 48px; }
+.ps > div { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 24px; padding: 28px; }
+.ps h4, .mi > h4 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+.ps p { color: rgba(255,255,255,.75); font-size: 15.5px; }
+.mi > h4 { margin-top: 48px; font-size: 24px; }
+ol { list-style: none; padding: 0; }
+ol li { display: flex; gap: 16px; font-size: 15.5px; color: rgba(255,255,255,.8); margin-bottom: 20px; line-height: 1.6; }
+ol i { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--ag); color: #000; font: 700 14px/28px 'Plus Jakarta Sans', sans-serif; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.hl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 12px; }
+.hl div { padding: 12px 20px; border-radius: 16px; font-size: 15px; font-weight: 500; color: #fff; display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+.hl div::before { content: '✓'; color: var(--a); font-weight: 800; font-size: 18px; }
+.tools { margin-top: 40px; }
+.tools span { display: inline-block; margin: 0 10px 10px 0; padding: 6px 16px; border-radius: 999px; border: 1px solid var(--a); font-size: 13px; font-weight: 600; color: var(--a); background: rgba(255,255,255,0.02); }
+
+/* run button + run popup */
+.runbtn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:14px 28px;border:0;border-radius:999px;background:var(--ag);color:#000;font:700 16px 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer;animation:pulse 2.4s infinite;transition:transform .25s}
+.runbtn:hover{transform:translateY(-3px) scale(1.03)}
+.runbtn small{font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;background:rgba(0,0,0,.18);padding:3px 10px;border-radius:999px}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--sh)}70%,100%{box-shadow:0 0 0 16px transparent}}
+.pf.demo{left:auto;right:16px;color:#6ee7b7}
+#rn{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#rn.open{display:flex;animation:fi .25s}
+.rp{width:min(660px,100%);max-height:calc(100vh - 32px);overflow-y:auto;background:#0c0c14;border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 70px -10px rgba(0,0,0,.8);animation:pop .35s cubic-bezier(.2,.9,.3,1.1)}
+.rh{padding:24px 28px 4px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.rh h3{font-size:22px;font-weight:800;line-height:1.25}
+.live{flex:none;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6ee7b7;border:1px solid rgba(110,231,183,.35);padding:4px 10px;border-radius:999px}
+.rin{margin:12px 28px 0;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:13px;color:var(--mut)}
+.rin b{color:#fff;font-weight:600}
+.pg{height:6px;background:rgba(255,255,255,.08);margin-top:18px}
+.pg i{display:block;height:100%;width:0;background:var(--ag);transition:width .4s ease}
+.log{list-style:none;padding:20px 28px 8px;display:grid;gap:12px;margin:0}
+.log li{display:flex;gap:12px;align-items:flex-start;font-size:15px;opacity:.3;transition:opacity .3s;margin:0}
+.log li.run,.log li.done{opacity:1}
+.ic{flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:800;color:#000}
+.log li.run .ic{border-color:var(--a);border-top-color:transparent;animation:sp .7s linear infinite}
+.log li.done .ic{background:var(--ag);border-color:transparent}
+@keyframes sp{to{transform:rotate(360deg)}}
+.log time{margin-left:auto;padding-left:12px;font-size:12px;color:var(--mut);white-space:nowrap;font-variant-numeric:tabular-nums}
+.sum{margin:16px 28px 8px;padding:22px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--a);animation:up .5s both}
+.sum h4{font-size:18px;font-weight:800;margin-bottom:14px}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kp div{background:rgba(255,255,255,.04);border-radius:14px;padding:12px;text-align:center}
+.kp b{display:block;font-size:22px;font-weight:800;color:var(--a)}
+.kp span{font-size:11px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.out{margin-top:14px;font-size:13px}
+.out strong{display:block;color:var(--mut);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.out pre{white-space:pre-wrap;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;background:#05050a;border:1px solid var(--line);border-radius:12px;padding:14px;color:#d8d8e8}
+.ra{display:flex;gap:10px;flex-wrap:wrap;padding:16px 28px 8px}
+.ra .btn{padding:10px 22px;font-size:14px}
+.dis{padding:8px 28px 22px;font-size:12px;color:rgba(255,255,255,.4)}
+@media(max-width:560px){.kp{grid-template-columns:1fr 1fr 1fr}.kp b{font-size:18px}}
+
+/* contact redesign */
+.ct { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  padding: clamp(50px, 8vw, 80px) 24px; 
+  border-radius: 40px; 
+  background: linear-gradient(160deg, rgba(30, 30, 45, 0.6), rgba(15, 15, 25, 0.8));
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6); 
+  border: 1px solid var(--line); 
+  position: relative;
+  overflow: hidden;
+}
+.ct::before {
+  content: ''; position: absolute; inset: 0; background: var(--ag); opacity: 0.03; z-index: 0;
+}
+.ct > * { position: relative; z-index: 1; }
+.ct h2 { font-size: clamp(36px, 6vw, 56px); margin-bottom: 16px; }
+.ct p { color: var(--mut); font-size: 18px; max-width: 600px; margin: 0 auto 16px; }
+.lk-grid { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 40px; width: 100%; }
+.lk-grid a { 
+  display: flex; align-items: center; gap: 12px; padding: 16px 32px; 
+  background: rgba(255,255,255,0.05); border: 1px solid var(--line); 
+  border-radius: 999px; font-size: 16px; font-weight: 600; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); color: #fff; 
+}
+.lk-grid a:hover { 
+  background: rgba(255,255,255,0.12); transform: translateY(-5px) scale(1.02); 
+  border-color: #38bdf8; box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.5); 
+}
+
+footer { text-align: center; padding: 60px 24px; font-size: 15px; font-weight: 500; color: rgba(255,255,255,.4); }
+.rv { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.rv.in { opacity: 1; transform: none; }
+
+/* phone fixes: nothing may be wider than the screen */
+@media(max-width: 560px) {
+  .wrap { padding: 72px 18px; }
+  nav { top: 10px; padding: 10px 16px; gap: 10px; width: calc(100% - 20px); }
+  nav b { font-size: 15px; }
+  nav div { gap: 12px; font-size: 13px; }
+  #top { padding: 110px 18px 48px; }
+  h1 { font-size: clamp(38px, 12vw, 52px); }
+  .role { font-size: 18px; }
+  .tag { font-size: 16px; }
+  .badge { font-size: 12px; padding: 6px 14px; }
+  .cta { gap: 12px; }
+  .cta .btn { padding: 13px 26px; }
+  .stats { gap: 10px; margin-top: 44px; }
+  .stats div { padding: 16px 6px; border-radius: 18px; }
+  .stats b { font-size: 24px; }
+  .stats span { display: block; font-size: 10px; letter-spacing: .02em; line-height: 1.35; }
+  .sk > div { padding: 22px; }
+  .card:hover { transform: none; }
+  .mi { padding: 22px 18px; }
+  .x { right: 14px; top: 14px; width: 38px; height: 38px; }
+  .ps > div { padding: 20px; }
+  .roi b { font-size: 34px; }
+  .rh, .rin, .log, .ra, .dis { padding-left: 18px; padding-right: 18px; }
+  .rin, .sum { margin-left: 18px; margin-right: 18px; }
+  .rh h3 { font-size: 19px; }
+  .log li { font-size: 14px; }
+  .log time { display: none; }
+}
+@media(max-width: 768px) {
+  nav { padding: 12px 20px; width: calc(100% - 32px); }
+  nav div { gap: 16px; font-size: 14px; }
+  .lk-grid a { width: 100%; justify-content: center; }
+}
+@media(prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<nav class="glass"><b class="gt" id="nm"></b><div><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></nav>
+
+<section id="top">
+  <div class="grid"></div>
+  <div class="blob" style="left: -150px; top: 10%; background: rgba(139, 92, 246, 0.4);"></div>
+  <div class="blob" style="right: -100px; bottom: 5%; background: rgba(16, 185, 129, 0.35); animation-delay: 2s; animation-duration: 12s;"></div>
+  <div class="blob" style="left: 35%; top: 40%; background: rgba(56, 189, 248, 0.35); animation-delay: 4s;"></div>
+  
+  <div class="hero rv in">
+    <span class="badge glass">● Available for automation projects</span>
+    <h1>Hi, I’m <span class="gt" id="nm2"></span></h1>
+    <p class="role" id="role"></p>
+    <p class="tag" id="tag"></p>
+    <div class="cta"><a class="btn pri" href="#projects">View my work</a><a class="btn sec glass" href="#contact">Hire me</a></div>
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<section id="skills" class="wrap rv">
+  <h2>Tech <span class="gt">Stack</span></h2>
+  <p class="sub">Tools I use to build reliable, production-grade automations.</p>
+  <div class="sk" id="sk"></div>
+</section>
+
+<section id="projects" class="wrap rv">
+  <h2>Featured <span class="gt">Projects</span></h2>
+  <p class="sub">Real workflows, real business problems, measurable ROI. Click a project for the full case study.</p>
+  <div class="filters" id="fl"></div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section id="contact" class="wrap rv">
+  <div class="ct glass">
+    <h2>Let’s automate <span class="gt">your busywork</span></h2>
+    <p>Tell me what eats your team’s time. I’ll reply with a plan and an estimate of the hours and money it can save.</p>
+    <div class="lk-grid" id="lk"></div>
+  </div>
+</section>
+
+<footer id="ft"></footer>
+<div id="md" aria-modal="true" role="dialog"></div>
+<div id="rn" aria-modal="true" role="dialog" aria-label="Workflow run"></div>
+
+<script>
+const SITE = {
+ "name": "Nafiur Rahman",
+ "role": "AI Automation Expert · n8n · Zapier · Make",
+ "tagline": "I design AI-powered workflows that save businesses time and money. If a process is repetitive, manual, or error-prone, I can automate it. Recent builds include lead qualification, invoice processing, RAG support bots, and pricing intelligence.",
+ "email": "nafirahman619@gmail.com",
+ "socials": [
+  { "label": "Email Me", "url": "mailto:nafirahman619@gmail.com", "icon": "✉️" },
+  { "label": "X (Twitter)", "url": "https://x.com/urnothingforme", "icon": "𝕏" },
+  { "label": "Facebook", "url": "https://www.facebook.com/nafiur.rahman.459532", "icon": "📘" },
+  { "label": "01604237507", "url": "tel:01604237507", "icon": "📞" }
+ ],
+ "skills": [
+  { "group": "Automation Platforms", "items": ["n8n", "Make", "Zapier", "Webhooks", "REST APIs", "Python (Custom Nodes)", "JavaScript / Node.js"] },
+  { "group": "AI & LLMs", "items": ["Google Gemini", "OpenAI API", "Anthropic Claude", "AI Agents", "RAG pipelines", "Embeddings", "Structured JSON output", "Prompt engineering"] },
+  { "group": "Data & Storage", "items": ["Pinecone", "Postgres / Neon", "Supabase", "Airtable", "Google Sheets"] },
+  { "group": "Integrations", "items": ["Slack", "Gmail", "Telegram", "Google Drive", "Shopify", "HubSpot", "Notion", "Zendesk", "Facebook", "Messenger", "WhatsApp"] }
+ ]
+};
+
+const PROJECTS = [
+ {
+  "id": "ai-lead-qualification",
+  "title": "AI Lead Qualification & Personalised Outreach Agent",
+  "category": "Sales Automation",
+  "platform": "n8n",
+  "accent": "purple",
+  "tagline": "Scores every inbound lead with Gemini, drafts a tailored email, and sends it only after a human approves in Slack.",
+  "tools": ["n8n", "Webhooks", "Google Gemini", "Neon Postgres", "Gmail", "Slack"],
+  "thumbnail": "Screenshot 2026-11-09 123137.png",
+  "screenshots": ["Screenshot 2026-11-09 123137.png", "Screenshot 2026-11-09 123154.png"],
+  "problem": "Sales teams waste hours researching every form submission, duplicates clog the CRM, and slow replies mean hot leads go cold. Fully automated cold emails are risky, so teams keep doing it by hand.",
+  "solution": "An inbound webhook validates the payload, checks Neon Postgres for an existing email (duplicates are only ’touched’, not re-processed), fetches the lead’s website, and asks Gemini to score and qualify the lead. Leads scoring 7 or higher get a personalised Gmail draft that is sent to Slack for approval; low scorers receive a nurture email automatically.",
+  "steps": [
+   "Webhook receives the lead and a code node validates required fields; invalid payloads exit safely.",
+   "Postgres lookup detects duplicates and updates their last-seen record instead of creating new ones.",
+   "HTTP node scrapes the lead’s website so Gemini can score using real company context.",
+   "Gemini returns a score and qualification summary, which is saved to Neon.",
+   "Score >= 7 branch: Gmail draft is created, Slack message waits for an approve/reject response (human-in-the-loop).",
+   "Approved leads get the email sent; rejected leads are logged via SQL and a Slack confirmation is posted.",
+   "Score < 7 branch: a nurture email goes out automatically.",
+   "A separate Error Trigger workflow alerts #lead-ops-alerts in Slack with workflow, node, message and execution ID."
+  ],
+  "highlights": ["Human-in-the-loop approval via Slack", "Duplicate-lead protection", "Website-aware AI scoring", "Dedicated error-alert workflow"],
+  "roi": { "hoursSavedPerMonth": 40, "moneySavedPerMonth": 800, "isEstimate": true, "assumptions": "Assumes ~200 leads/month x 12 min of manual research and email writing, valued at $20/hour." }
+ },
+ {
+  "id": "invoice-processing",
+  "title": "Automated Invoice Processing Pipeline",
+  "category": "Finance Operations",
+  "platform": "n8n",
+  "accent": "emerald",
+  "tagline": "Drop a PDF invoice in Drive and AI extracts, validates, de-duplicates, logs and routes it to billing.",
+  "tools": ["n8n", "Google Drive", "Google Gemini", "Google Sheets", "Gmail"],
+  "thumbnail": "Screenshot 2026-11-09 113635.png",
+  "screenshots": ["Screenshot 2026-11-09 113635.png", "Screenshot 2026-11-09 113652.png"],
+  "problem": "Finance teams retype invoice data into spreadsheets, miss duplicates that cause double payments, and lose time chasing malformed documents.",
+  "solution": "A Drive trigger fires when a new file lands in the invoices folder. PDFs are downloaded, parsed, and Gemini’s Information Extractor pulls structured fields. A validation code node checks the data, Google Sheets is searched for duplicates, and clean invoices are logged, summarised in an AI-written email to the billing team, and moved to a Processed folder. Anything invalid or duplicated triggers an alert and is moved to Failed.",
+  "steps": [
+   "Google Drive trigger detects a new file; an IF node accepts PDFs only.",
+   "File is downloaded and text is extracted from the PDF.",
+   "Gemini extracts invoice fields (vendor, number, amounts, dates) into structured JSON.",
+   "Code node validates required fields and formats.",
+   "Invalid: Gmail ’Needs review’ alert and file moves to Failed.",
+   "Valid: Google Sheets is checked for duplicates; duplicates trigger an email and move to Failed.",
+   "Unique: row is appended to the invoice sheet, Gemini writes the email text, billing team is notified by Gmail, file moves to Processed.",
+   "Error workflow emails the owner on any unexpected failure."
+  ],
+  "highlights": ["Duplicate payment prevention", "Processed / Failed folder routing", "AI structured extraction", "Audit trail in Google Sheets"],
+  "roi": { "hoursSavedPerMonth": 30, "moneySavedPerMonth": 600, "isEstimate": true, "assumptions": "Assumes ~300 invoices/month x 6 min manual entry and checking, valued at $20/hour, excluding avoided duplicate payments." }
+ },
+ {
+  "id": "rag-support-chatbot",
+  "title": "RAG Policy & FAQ Support Chatbot",
+  "category": "Customer Support",
+  "platform": "n8n",
+  "accent": "blue",
+  "tagline": "A chatbot that answers from your own documents and re-indexes automatically whenever a file is added or edited in Drive.",
+  "tools": ["n8n", "Google Gemini", "Pinecone", "Postgres", "Google Drive", "AI Agent"],
+  "thumbnail": "Screenshot 2026-11-09 113540.png",
+  "screenshots": ["Screenshot 2026-11-09 113540.png", "Screenshot 2026-11-09 113609.png"],
+  "problem": "Support staff answer the same policy and FAQ questions repeatedly, and generic chatbots hallucinate because they don’t know the company’s real documents.",
+  "solution": "Two pipelines. An ingestion pipeline watches a Drive folder for created and updated files, removes stale vectors from Pinecone by file ID, splits documents into overlapping chunks, embeds them with Gemini, and stores them with file metadata. A chat pipeline gives an AI Agent a Pinecone retrieval tool (top 15 chunks) and Postgres-backed memory so it answers from company documents and remembers the conversation.",
+  "steps": [
+   "Drive triggers poll the policy folder every minute for new or edited files.",
+   "HTTP call deletes existing vectors for that file ID so updates never leave outdated answers.",
+   "File is downloaded (Google Docs converted to PDF) and parsed by the document loader.",
+   "Recursive splitter chunks text with 150-character overlap; Gemini creates embeddings.",
+   "Chunks are upserted into a Pinecone namespace with fileId, fileName and URL metadata.",
+   "Chat trigger passes questions to a Gemini-powered AI Agent.",
+   "Agent calls the Pinecone tool for grounded context and stores history in Postgres.",
+   "An error workflow notifies the owner via Telegram."
+  ],
+  "highlights": ["Auto re-indexing on file changes", "Grounded answers with source metadata", "Persistent conversation memory", "Free-tier friendly stack"],
+  "roi": { "hoursSavedPerMonth": 35, "moneySavedPerMonth": 700, "isEstimate": true, "assumptions": "Assumes ~400 repetitive questions/month deflected x 5 min each, valued at $20/hour." }
+ },
+ {
+  "id": "ai-price-watch",
+  "title": "AI Price Watch: Daily Competitor Alerts & Pricing Suggestions",
+  "category": "E-commerce Intelligence",
+  "platform": "n8n",
+  "accent": "purple",
+  "tagline": "Monitors competitor Shopify prices daily, and an AI analyst plus a rule engine propose safe price changes you approve in Slack.",
+  "tools": ["n8n", "Shopify", "Google Gemini", "Neon Postgres", "Slack", "Telegram"],
+  "thumbnail": "Screenshot 2026-11-08 222547.png",
+  "screenshots": ["Screenshot 2026-11-08 222547.png", "Screenshot 2026-11-08 222651.png"],
+  "problem": "Store owners manually check competitor prices, react late to price drops or stock-outs, and risk AI-suggested prices that break margin rules.",
+  "solution": "A scheduled workflow fetches competitor product pages politely (rate-limited with retries), validates and stores price history in Postgres, and detects moves over a configurable threshold or stock flips with a cooldown. A Gemini analyst explains the change, a Gemini pricer suggests an action, and a Code node enforces floor price, minimum margin and maximum discount so the LLM can never break business rules. Recommendations go to Slack and wait up to 24 hours for approve or reject.",
+  "steps": [
+   "Schedule or manual trigger loads tunable values from a Config node and expires stale recommendations.",
+   "Competitor products are read from Postgres and each page is fetched with health checks and an ops warning on failures.",
+   "Prices are extracted, validated and saved as history.",
+   "SQL change detection applies thresholds and cooldowns; every run is written to a run log.",
+   "Gemini Analyst explains what changed; Gemini Pricer proposes an action.",
+   "Rule engine clamps the suggestion to floor price, margin and discount limits, with fallbacks if the AI fails.",
+   "Recommendation is saved, Slack alert waits for approval, and the decision is recorded and confirmed.",
+   "Quiet days optionally send a ’no changes’ message; a separate workflow sends Telegram error alerts."
+  ],
+  "highlights": ["AI proposes, rules enforce", "Human approval with 24h timeout", "Full price history and run log", "Production-grade error alerting"],
+  "roi": { "hoursSavedPerMonth": 22, "moneySavedPerMonth": 440, "isEstimate": true, "assumptions": "Assumes ~1 hour/day of manual competitor checking, valued at $20/hour, excluding margin gained from faster price reactions." }
+ },
+ {
+  "id": "support-ticket-risk-triage",
+  "title": "Support Ticket Risk Triage with Human Review",
+  "category": "Customer Support",
+  "platform": "Make",
+  "accent": "emerald",
+  "tagline": "Gemini drafts a reply and rates risk. Low-risk tickets get an instant auto-reply; high-risk ones are logged and sent to Slack for review.",
+  "tools": ["Make", "Webhooks", "Airtable", "Google Gemini", "Slack"],
+  "thumbnail": "Screenshot 2026-11-09 001036.png",
+  "screenshots": ["Screenshot 2026-11-09 001036.png"],
+  "problem": "Support teams either reply manually to every ticket (slow) or auto-reply to everything (dangerous for refunds, legal or angry-customer cases).",
+  "solution": "A custom webhook receives each ticket, searches an Airtable knowledge base, and Gemini drafts a reply with a structured risk rating. A JSON parser feeds a router: low-risk tickets get an immediate webhook auto-reply, while high-risk tickets are logged in Airtable, posted to Slack for human review, and acknowledged to the sender.",
+  "steps": [
+   "Custom webhook receives the ticket payload.",
+   "Airtable search retrieves relevant knowledge-base articles.",
+   "Gemini drafts a response and rates its risk as structured JSON.",
+   "JSON parser validates the output; router splits on risk level.",
+   "Low risk: webhook responds with the auto-reply instantly.",
+   "High risk: ticket is logged in Airtable, Slack notifies the reviewer, and the webhook acknowledges receipt."
+  ],
+  "highlights": ["Risk-based routing", "Structured AI output", "Human-in-the-loop for sensitive tickets", "Hardened webhook responses"],
+  "roi": { "hoursSavedPerMonth": 33, "moneySavedPerMonth": 660, "isEstimate": true, "assumptions": "Assumes ~500 tickets/month x 4 min saved on drafting and triage, valued at $20/hour." }
+ }
+];
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const AC = { purple: "pu", emerald: "em", blue: "bl" };
+const img = (src, alt) => src ? `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=ph>Screenshot unavailable</div>'">` : `<div class="ph">Add screenshot</div>`;
+
+document.title = `${SITE.name} | AI Automation Expert`;
+$("#nm").textContent = $("#nm2").textContent = SITE.name;
+$("#role").textContent = SITE.role; $("#tag").textContent = SITE.tagline;
+$("#ft").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
+
+const hrs = PROJECTS.reduce((s, p) => s + p.roi.hoursSavedPerMonth, 0);
+const usd = PROJECTS.reduce((s, p) => s + p.roi.moneySavedPerMonth, 0);
+$("#stats").innerHTML = [
+  [PROJECTS.length, "Automations shipped"], 
+  [hrs + "h", "Saved / month (est.)"], 
+  ["$" + usd.toLocaleString(), "Saved / month (est.)"]
+].map(([v, l]) => `<div class="glass"><b class="gt">${v}</b><span>${l}</span></div>`).join("");
+
+$("#sk").innerHTML = SITE.skills.map((g) => `<div class="glass"><h3>${esc(g.group)}</h3>${g.items.map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>`).join("");
+
+// Update Contact Section Render
+$("#lk").innerHTML = SITE.socials.map((s) => 
+  `<a href="${esc(s.url)}" ${s.label.includes('Email') || s.label.includes('016') ? '' : 'target="_blank" rel="noopener"'}>
+    ${s.icon} ${esc(s.label)}
+  </a>`
+).join("");
+
+let filter = "All";
+function renderGallery() {
+  const cats = ["All", ...new Set(PROJECTS.map((p) => p.platform))];
+  $("#fl").innerHTML = cats.map((c) => `<button class="f ${c === filter ? "on" : ""}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+  $("#cards").innerHTML = PROJECTS.filter((p) => filter === "All" || p.platform === filter).map((p, i) => `
+    <button class="card ${AC[p.accent] || "pu"}" data-id="${p.id}" style="animation-delay:${i * 80}ms">
+      <div class="th"><div>${img(p.thumbnail, p.title)}</div><span class="pf">${esc(p.platform)}</span><span class="pf demo">▶ Live demo</span></div>
+      <div class="cb"><span class="cat">${esc(p.category)}</span><h3>${esc(p.title)}</h3><p>${esc(p.tagline)}</p>
+      <div class="cf"><span>${p.roi.hoursSavedPerMonth}h / mo saved</span><span>View case study →</span></div></div></button>`).join("");
+}
+
+$("#fl").addEventListener("click", (e) => { const c = e.target.closest(".f"); if (c) { filter = c.dataset.c; renderGallery(); } });
+$("#cards").addEventListener("click", (e) => { const c = e.target.closest(".card"); if (c) openModal(c.dataset.id); });
+
+const md = $("#md");
+function openModal(id) {
+  const p = PROJECTS.find((x) => x.id === id), cls = AC[p.accent] || "pu";
+  const m = [[p.roi.hoursSavedPerMonth + "h", "Time saved / month"], ["$" + p.roi.moneySavedPerMonth.toLocaleString(), "Money saved / month"], ["$" + (p.roi.moneySavedPerMonth * 12).toLocaleString(), "Projected yearly savings"]];
+  md.innerHTML = `<div class="m ${cls}"><div class="bar"></div><button class="x" aria-label="Close">✕</button><div class="mi">
+    <span class="cat">${esc(p.category)} · ${esc(p.platform)}</span><h3>${esc(p.title)}</h3><p class="sub">${esc(p.tagline)}</p>
+    <button class="runbtn" data-run="${p.id}">▶ Run this workflow <small>Live demo</small></button>
+    <div class="shot" id="shot">${img(p.screenshots[0], p.title)}</div>
+    ${p.screenshots.length > 1 ? `<div class="th2">${p.screenshots.map((s, i) => `<button class="${i ? "" : "on"}" data-i="${i}">${img(s, "")}</button>`).join("")}</div>` : ""}
+    <div class="roi">${m.map(([v, l]) => `<div><div><b>${v}</b><span>${l}</span></div></div>`).join("")}</div>
+    <p class="note">${p.roi.isEstimate ? "Estimated ROI. " : ""}${esc(p.roi.assumptions)}</p>
+    <div class="ps"><div><h4 style="color:#fda4af">🔥 The Problem</h4><p>${esc(p.problem)}</p></div><div><h4 style="color:#6ee7b7">⚡ The Solution</h4><p>${esc(p.solution)}</p></div></div>
+    <h4>How it works</h4><ol>${p.steps.map((s, i) => `<li><i>${i + 1}</i><span>${esc(s)}</span></li>`).join("")}</ol>
+    <h4>Highlights</h4><div class="hl">${p.highlights.map((h) => `<div>${esc(h)}</div>`).join("")}</div>
+    <div class="tools">${p.tools.map((t) => `<span>${esc(t)}</span>`).join("")}</div></div></div>`;
+  md.classList.add("open"); md.scrollTop = 0; document.body.style.overflow = "hidden";
+  
+  md.querySelector(".th2")?.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    md.querySelectorAll(".th2 button").forEach((x) => x.classList.toggle("on", x === b));
+    $("#shot").innerHTML = img(p.screenshots[b.dataset.i], p.title);
+  });
+}
+function closeModal() { closeRun(); md.classList.remove("open"); md.innerHTML = ""; document.body.style.overflow = ""; }
+md.addEventListener("click", (e) => { if (e.target === md || e.target.closest(".x")) closeModal(); });
+addEventListener("keydown", (e) => { if (e.key === "Escape") rn.classList.contains("open") ? closeRun() : closeModal(); });
+
+/* ---------- Interactive "Run workflow" demo (simulated, sample data) ---------- */
+// Each step: [what was done, simulated duration in ms]
+const RUNS = {
+  "ai-lead-qualification": {
+    input: "<b>Sample lead:</b> Sarah Khan · BrightLoop Studio · sarah@brightloop.io",
+    manual: "≈ 12 min",
+    steps: [
+      ["Lead has been received by the webhook", 600],
+      ["Lead payload has been validated (name, email, company present)", 700],
+      ["Neon Postgres has been checked: new lead, no duplicate found", 900],
+      ["Company website has been fetched and read", 1100],
+      ["Gemini has scored the lead 8/10 and marked it as qualified", 1400],
+      ["Lead data has been saved to Neon Postgres", 700],
+      ["Personalised outreach email has been drafted in Gmail", 1100],
+      ["Slack approval request has been sent and approved by the reviewer", 1200],
+      ["Outreach email has been sent to sarah@brightloop.io", 800]
+    ],
+    output: ["Drafted email (approved)", "Subject: Automating BrightLoop’s client onboarding\n\nHi Sarah, I noticed BrightLoop is growing its design team. Many studios at that stage lose hours each week to manual intake. Here is a quick idea for how to automate it…"]
+  },
+  "invoice-processing": {
+    input: "<b>Sample file:</b> INV-2041_Acme-Supplies.pdf dropped in Google Drive",
+    manual: "≈ 6 min",
+    steps: [
+      ["New invoice has been detected in the Drive folder", 600],
+      ["File type has been confirmed as PDF and downloaded", 700],
+      ["Text has been extracted from the PDF", 800],
+      ["Gemini has extracted vendor, invoice number, amount and due date", 1300],
+      ["Validation has passed: all required fields are present", 700],
+      ["Google Sheets has been checked: no duplicate invoice found", 900],
+      ["Invoice has been logged as a new row in the invoice sheet", 700],
+      ["Summary email has been written by Gemini", 1000],
+      ["Billing team has been notified by Gmail", 800],
+      ["File has been moved to the Processed folder", 600]
+    ],
+    output: ["Extracted fields", "vendor:   Acme Supplies\ninvoice:  INV-2041\namount:   $1,284.50\ndue date: 2026-12-03\nstatus:   logged, billing notified"]
+  },
+  "rag-support-chatbot": {
+    input: "<b>Sample question:</b> “What is your refund policy for digital products?”",
+    manual: "≈ 5 min",
+    steps: [
+      ["Updated policy document has been detected in Google Drive", 600],
+      ["Old vectors for that file have been removed from Pinecone", 800],
+      ["Document has been parsed and split into 42 chunks (150 overlap)", 900],
+      ["Gemini embeddings have been created and stored in Pinecone", 1200],
+      ["Customer question has been received in the chat", 600],
+      ["Conversation memory has been loaded from Postgres", 700],
+      ["Top 15 matching chunks have been retrieved from Pinecone", 1000],
+      ["Gemini has written an answer grounded in the policy", 1300],
+      ["Reply has been sent and saved to memory", 600]
+    ],
+    output: ["Chatbot answer", "Digital products can be refunded within 14 days of purchase if the download link has not been used. After that, refunds are handled case by case.\n\nSource: refund-policy.pdf"]
+  },
+  "ai-price-watch": {
+    input: "<b>Sample run:</b> daily schedule · 24 competitor products tracked",
+    manual: "≈ 1 hour",
+    steps: [
+      ["Schedule has triggered and config has been loaded", 600],
+      ["Stale recommendations have been expired", 600],
+      ["24 competitor product pages have been fetched politely", 1300],
+      ["Prices have been extracted and saved to price history", 900],
+      ["3 price changes have been detected over the threshold", 800],
+      ["Gemini Analyst has explained what changed (competitor cut price by 8%)", 1300],
+      ["Gemini Pricer has suggested a new price of $46.99", 1100],
+      ["Rule engine has checked floor price, margin and max discount: passed", 900],
+      ["Recommendation has been saved and sent to Slack for approval", 1000],
+      ["Decision has been recorded and confirmed", 700]
+    ],
+    output: ["Recommendation (approved)", "Product:   Pro Desk Lamp\nPrice:     $49.99 → $46.99\nMargin:    31% (minimum 25%)\nReason:    main competitor dropped price by 8%"]
+  },
+  "support-ticket-risk-triage": {
+    input: "<b>Sample ticket:</b> “I was charged twice, please refund me.”",
+    manual: "≈ 4 min",
+    steps: [
+      ["Ticket has been received by the webhook", 600],
+      ["Airtable knowledge base has been searched: 2 articles matched", 900],
+      ["Gemini has drafted a reply and rated the risk as HIGH (refund request)", 1400],
+      ["Structured JSON output has been parsed", 600],
+      ["Router has sent the ticket down the high-risk path", 600],
+      ["Ticket has been logged in Airtable for review", 800],
+      ["Slack has notified the human reviewer", 800],
+      ["Webhook has been acknowledged with the high-risk response", 600]
+    ],
+    output: ["Slack alert to reviewer", "🚨 High-risk ticket needs review\nCustomer reports a duplicate charge.\nDraft reply is ready in Airtable."]
+  }
+};
+
+const rn = $("#rn");
+let runTok = 0, skipRun = false;
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const sleep = (ms) => new Promise((r) => setTimeout(r, skipRun ? 40 : reduceMotion ? 60 : ms));
+
+function closeRun() { runTok++; rn.classList.remove("open"); rn.innerHTML = ""; }
+
+async function startRun(id) {
+  const p = PROJECTS.find((x) => x.id === id), r = RUNS[id];
+  if (!p || !r) return;
+  const tok = ++runTok; skipRun = false;
+  rn.className = "open " + (AC[p.accent] || "pu");
+  rn.innerHTML = `<div class="rp"><div class="rh"><h3>▶ Running: ${esc(p.title)}</h3><span class="live">Live demo</span></div>
+    <div class="rin">${r.input}</div><div class="pg"><i id="pgi"></i></div>
+    <ul class="log" aria-live="polite">${r.steps.map(([t]) => `<li><span class="ic"></span><span>${esc(t)}</span><time></time></li>`).join("")}</ul>
+    <div id="rs"></div>
+    <div class="ra" id="ra"><button class="btn sec glass" id="skip">Skip to results</button><button class="btn sec glass" data-close>Close</button></div>
+    <p class="dis">Demo simulation with sample data. The real workflow runs inside ${esc(p.platform)}.</p></div>`;
+  const lis = rn.querySelectorAll(".log li");
+  let cum = 0;
+  for (let i = 0; i < r.steps.length; i++) {
+    lis[i].classList.add("run");
+    lis[i].scrollIntoView({ block: "nearest", behavior: "smooth" });
+    await sleep(r.steps[i][1]);
+    if (tok !== runTok) return;
+    cum += r.steps[i][1];
+    lis[i].classList.replace("run", "done");
+    lis[i].querySelector(".ic").textContent = "✓";
+    lis[i].querySelector("time").textContent = (cum / 1000).toFixed(1) + "s";
+    $("#pgi").style.width = ((i + 1) / r.steps.length * 100) + "%";
+  }
+  $("#rs").innerHTML = `<div class="sum"><h4>✅ Workflow completed successfully</h4>
+    <div class="kp"><div><b>${r.steps.length}/${r.steps.length}</b><span>Steps done</span></div><div><b>${(cum / 1000).toFixed(1)}s</b><span>Automated</span></div><div><b>${esc(r.manual)}</b><span>Done by hand</span></div></div>
+    <div class="out"><strong>${esc(r.output[0])}</strong><pre>${esc(r.output[1])}</pre></div></div>`;
+  $("#ra").innerHTML = `<button class="btn pri" data-again="${id}">↻ Run again</button><button class="btn sec glass" data-close>Close</button>`;
+  $("#rs").scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+rn.addEventListener("click", (e) => {
+  if (e.target === rn || e.target.closest("[data-close]")) closeRun();
+  else if (e.target.closest("#skip")) skipRun = true;
+  else { const a = e.target.closest("[data-again]"); if (a) startRun(a.dataset.again); }
+});
+md.addEventListener("click", (e) => { const b = e.target.closest("[data-run]"); if (b) startRun(b.dataset.run); });
+
+const io = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && x.target.classList.add("in")), { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+renderGallery();
+</script>
+</body>
+</html>
